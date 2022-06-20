@@ -3,6 +3,7 @@ package query
 import (
 	"fmt"
 	"persistence/pgsql"
+	"persistence/prop"
 	"strings"
 )
 
@@ -34,5 +35,25 @@ func (DBQuery) InsertInto(tableName string, columnNames []string, values []inter
 	if err != nil {
 		return err
 	}
+	return (*row).Scan(&response)
+}
+
+func (DBQuery) UpdateInto(tableName string, columnNames []string, columnValues []interface{}, conditions []string, conditionsValues []interface{}, conditionals []string, response *interface{}) error {
+	var columnQuery = ""
+	for index, column := range columnNames {
+		if !strings.EqualFold(columnQuery, "") {
+			columnQuery = columnQuery + " , "
+		}
+		columnQuery = columnQuery + fmt.Sprintf("%s %s %s", column, prop.EQUAL, columnValues[index])
+	}
+	var conditionsQuery = ""
+	for index, condition := range conditions {
+		if !strings.EqualFold(conditionsQuery, "") {
+			conditionsQuery = conditionsQuery + " AND "
+		}
+		conditionsQuery = conditionsQuery + fmt.Sprintf("%s %s %s", condition, conditionals[index], conditionsValues[index])
+	}
+	var query = fmt.Sprintf("UPDATE %s SET %s WHERE %s ", tableName, columnQuery, conditionsQuery)
+	row := pgsql.ExecuteQueryToOne(query)
 	return (*row).Scan(&response)
 }

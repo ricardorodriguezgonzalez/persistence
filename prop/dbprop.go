@@ -20,6 +20,21 @@ type dbProp struct {
 	DbWaitAfterQuery time.Duration
 }
 
+const (
+	EQUAL     string = " = "
+	NOTEQUAL  string = " <> "
+	GREATER   string = " > "
+	LESS      string = " < "
+	GREATERE  string = " >= "
+	LESSE     string = " <= "
+	LIKE      string = " LIKE "
+	NOTLIKE   string = " NOT LIKE "
+	IN        string = " IN "
+	NOTIN     string = " NOT IN "
+	ISNULL    string = " IS NULL "
+	ISNOTNULL string = " IS NOT NULL "
+)
+
 var (
 	dbPropInstance *dbProp
 	dbPropOnce     sync.Once
