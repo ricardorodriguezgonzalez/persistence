@@ -1,6 +1,6 @@
-# Boss DB Export
+# Boss DB persistence
 
-Database export tool.
+Database persistence tool.
 
 ## Environment Variables
 
