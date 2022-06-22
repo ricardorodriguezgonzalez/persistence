@@ -1,4 +1,4 @@
-module persistence
+module gitlab.falabella.com/falabella-retail/txd/boss/libraries/golang/persistence
 
 go 1.17
 
