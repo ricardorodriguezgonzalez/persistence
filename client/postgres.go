@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
-	"gitlab.falabella.com/falabella-retail/txd/boss/libraries/golang/persistence/prop"
 	"log"
 	"net/url"
 	"strings"
@@ -14,7 +13,7 @@ import (
 
 const ulrConnectionString = "postgresql://%s:%s@%s:%s/%s?sslmode=%s"
 
-func GetPostgresClient(ctx context.Context, pgProp *prop.PostgresProp) *PgClient {
+func GetPostgresClient(ctx context.Context, pgProp *PostgresProp) *PgClient {
 	verifyPgProp(pgProp)
 
 	urlCnx := fmt.Sprintf(
@@ -41,7 +40,7 @@ func GetPostgresClient(ctx context.Context, pgProp *prop.PostgresProp) *PgClient
 	return &PgClient{ctx, dbPool}
 }
 
-func verifyPgProp(pgProp *prop.PostgresProp) {
+func verifyPgProp(pgProp *PostgresProp) {
 	if len(pgProp.DbUser) == 0 {
 		log.Fatalf("User property is mandatory")
 	}

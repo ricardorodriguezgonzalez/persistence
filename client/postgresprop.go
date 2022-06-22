@@ -1,4 +1,4 @@
-package prop
+package client
 
 import "time"
 
