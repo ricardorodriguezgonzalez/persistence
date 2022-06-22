@@ -2,14 +2,13 @@ package example
 
 import (
 	"context"
-	"gitlab.falabella.com/falabella-retail/txd/boss/libraries/golang/persistence/client"
 	"gitlab.falabella.com/falabella-retail/txd/boss/libraries/golang/persistence/repo"
 )
 
 func main() {
 	// Config
-	var prop = &client.PostgresProp{}
-	pgClient := client.GetPostgresClient(context.Background(), prop)
+	var prop = &repo.PostgresProp{}
+	pgClient := repo.GetPostgresClient(context.Background(), prop)
 
 	var repo1 repo.DBQuery
 	repo1 = repo.GetPgRepo(pgClient)

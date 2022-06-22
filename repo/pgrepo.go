@@ -2,16 +2,15 @@ package repo
 
 import (
 	"fmt"
-	"gitlab.falabella.com/falabella-retail/txd/boss/libraries/golang/persistence/client"
 	"strings"
 )
 
-func GetPgRepo(cnt *client.PgClient) DBQuery {
+func GetPgRepo(cnt *PgClient) DBQuery {
 	return &pgRepo{cnt}
 }
 
 type pgRepo struct {
-	cnt *client.PgClient
+	cnt *PgClient
 }
 
 func (r *pgRepo) ExecuteQuery(query string, response *interface{}) error {

@@ -30,6 +30,6 @@ func (r *datastoreRepo) FindByConditions(tableName string, conditions []DBCondit
 	panic("Feature not implemented for datastore")
 }
 
-func (r *datastoreRepo) InsertInto(tableName string, columnNames []string, values []interface{}, response *interface{}) error {
+func (r *datastoreRepo) InsertInto(tableName string, columnValues []DBValue, response *interface{}) error {
 	panic("Feature not implemented for datastore")
 }
