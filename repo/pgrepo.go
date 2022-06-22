@@ -65,7 +65,13 @@ func (r *pgRepo) ExistsBy(tableName string, condition DBCondition, response *boo
 	return (*row).Scan(&response)
 }
 
-func (r *pgRepo) InsertInto(tableName string, columnNames []string, values []interface{}, response *interface{}) error {
+func (r *pgRepo) InsertInto(tableName string, columnValues []DBValue, response *interface{}) error {
+	var columnNames []string
+	var values []interface{}
+	for _, column := range columnValues {
+		columnNames = append(columnNames, column.FieldName)
+		values = append(values, column.Value)
+	}
 	var query = fmt.Sprintf("INSERT INTO %s (%s) VALUES", tableName, strings.Join(columnNames, ","))
 	var queryValues = query + " (%d) RETURNING *"
 	row, err := r.cnt.RunQueryArgs(queryValues, values)
