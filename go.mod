@@ -1,4 +1,4 @@
-module gitlab.falabella.com/falabella-retail/txd/boss/libraries/golang/persistence
+module github.com/ricardorodriguezgonzalez/persistence
 
 go 1.17
 

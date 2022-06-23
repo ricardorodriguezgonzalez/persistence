@@ -2,7 +2,7 @@ package example
 
 import (
 	"context"
-	"gitlab.falabella.com/falabella-retail/txd/boss/libraries/golang/persistence/repo"
+	"github.com/ricardorodriguezgonzalez/persistence/repo"
 )
 
 func main() {
